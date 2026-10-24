@@ -1,7 +1,6 @@
 ﻿using College.Services.Business;
 using College.Services.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 
@@ -11,11 +10,11 @@ namespace College.Services.Controllers
     [ApiController]
     public class ProfessorsController : ControllerBase
     {
-        readonly ProfessorsBusiness _professorsBusiness;
+        readonly IProfessorsBusiness _professorsBusiness;
 
-        public ProfessorsController(IConfiguration configuration)
+        public ProfessorsController(IProfessorsBusiness professorsBusiness)
         {
-            _professorsBusiness = new ProfessorsBusiness(configuration);
+            _professorsBusiness = professorsBusiness;
         }
 
         [HttpGet]

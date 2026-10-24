@@ -1,7 +1,6 @@
 ﻿using College.Services.Business;
 using College.Services.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 
@@ -11,11 +10,11 @@ namespace College.Services.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeBusiness _employeeBusiness;
+        private readonly IEmployeeBusiness _employeeBusiness;
 
-        public EmployeeController(IConfiguration configuration)
+        public EmployeeController(IEmployeeBusiness employeeBusiness)
         {
-            _employeeBusiness = new EmployeeBusiness(configuration);
+            _employeeBusiness = employeeBusiness;
         }
 
         [HttpGet]

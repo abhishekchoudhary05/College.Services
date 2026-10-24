@@ -1,24 +1,17 @@
 ﻿using College.Services.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace College.Services.Data
 {
-    public class ProfessorsData
+    public class ProfessorsData : IProfessorsData
     {
         readonly CollegeDbContext _collegeDbContext;
 
-        public ProfessorsData(IConfiguration configuration)
+        public ProfessorsData(CollegeDbContext collegeDbContext)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<CollegeDbContext>();
-
-            var connectionString = configuration["ConnectionStrings:CollegeDBConnectionString"];
-            optionsBuilder.UseSqlServer(connectionString);
-
-            _collegeDbContext = new CollegeDbContext(optionsBuilder.Options);
+            _collegeDbContext = collegeDbContext;
         }
 
         public IEnumerable<Professor> GetProfessors()

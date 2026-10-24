@@ -1,18 +1,17 @@
 ﻿using College.Services.Data;
 using College.Services.Entities;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 
 namespace College.Services.Business
 {
-    public class ProfessorsBusiness
+    public class ProfessorsBusiness : IProfessorsBusiness
     {
-        readonly ProfessorsData _professorsData;
+        readonly IProfessorsData _professorsData;
 
-        public ProfessorsBusiness(IConfiguration configuration)
+        public ProfessorsBusiness(IProfessorsData professorsData)
         {
-            _professorsData = new ProfessorsData(configuration);
+            _professorsData = professorsData;
         }
 
         public IEnumerable<Professor> GetProfessors()

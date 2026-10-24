@@ -1,26 +1,25 @@
 ﻿using College.Services.Data;
 using College.Services.Entities;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 
 namespace College.Services.Business
 {
-    public class EmployeeBusiness
+    public class EmployeeBusiness : IEmployeeBusiness
     {
-        private readonly EmployeeData _employeeData;
+        private readonly IEmployeeData _employeeData;
 
-        public EmployeeBusiness(IConfiguration configuration)
+        public EmployeeBusiness(IEmployeeData employeeData)
         {
-            _employeeData = new EmployeeData(configuration);
+            _employeeData = employeeData;
         }
 
-        internal List<Employees> GetEmployees()
+        public List<Employees> GetEmployees()
         {
             return _employeeData.GetEmployees();
         }
 
-        internal Employees GetEmployeesById(Guid id)
+        public Employees GetEmployeesById(Guid id)
         {
             return _employeeData.GetEmployeesById(id);
         }
